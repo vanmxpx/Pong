@@ -36,6 +36,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblGameOverScore = new System.Windows.Forms.Label();
             this.lblGameOver = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ItemBall = new System.Windows.Forms.PictureBox();
@@ -44,7 +45,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ScoreStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
-            this.lblGameOverScore = new System.Windows.Forms.Label();
             this.BackgrowndPanel.SuspendLayout();
             this.MaincontextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBall)).BeginInit();
@@ -112,6 +112,17 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // lblGameOverScore
+            // 
+            this.lblGameOverScore.AutoSize = true;
+            this.lblGameOverScore.Font = new System.Drawing.Font("Orator Std", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lblGameOverScore.Location = new System.Drawing.Point(347, 330);
+            this.lblGameOverScore.Name = "lblGameOverScore";
+            this.lblGameOverScore.Size = new System.Drawing.Size(0, 28);
+            this.lblGameOverScore.TabIndex = 5;
+            this.lblGameOverScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGameOverScore.Visible = false;
+            // 
             // lblGameOver
             // 
             this.lblGameOver.AutoSize = true;
@@ -127,6 +138,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(656, 483);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
@@ -155,6 +167,7 @@
             // 
             // StatusTrip
             // 
+            this.StatusTrip.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.StatusTrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.ScoreStrip});
@@ -167,6 +180,7 @@
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.BackColor = System.Drawing.Color.Transparent;
             this.toolStripStatusLabel1.Enabled = false;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(39, 17);
@@ -182,23 +196,13 @@
             this.MainTimer.Interval = 30;
             this.MainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
             // 
-            // lblGameOverScore
-            // 
-            this.lblGameOverScore.AutoSize = true;
-            this.lblGameOverScore.Font = new System.Drawing.Font("Orator Std", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblGameOverScore.Location = new System.Drawing.Point(347, 330);
-            this.lblGameOverScore.Name = "lblGameOverScore";
-            this.lblGameOverScore.Size = new System.Drawing.Size(0, 28);
-            this.lblGameOverScore.TabIndex = 5;
-            this.lblGameOverScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblGameOverScore.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 501);
             this.Controls.Add(this.BackgrowndPanel);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
