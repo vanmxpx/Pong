@@ -14,15 +14,19 @@ namespace Pong
     {
         public int score;
         public int speed_left, speed_top;
+        Random rnd = new Random();
+
         public MainForm()
         {
             InitializeComponent();
             StartGame();
         }
+
         #region Constructor
         public void StartGame()
         {
             MainTimer.Enabled = true;
+            lblGameOverScore.Visible = false;
             lblGameOver.Visible = false;
             score = 0;
             speed_left = 1; 
@@ -52,6 +56,7 @@ namespace Pong
                 speed_top += 1;
                 speed_top = -speed_top;
                 score += 1;
+                BackgrowndPanel.BackColor = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
             }
 
             if (ItemBall.Top <= BackgrowndPanel.Top) speed_top = -speed_top;
@@ -59,7 +64,8 @@ namespace Pong
             if (ItemBall.Bottom >= BackgrowndPanel.Bottom - 26)
             {
                 MainTimer.Enabled = false;
-                lblGameOver.Text += score;
+                lblGameOverScore.Text = Convert.ToString(score);
+                lblGameOverScore.Visible = true;
                 lblGameOver.Visible = true;
             }
 
