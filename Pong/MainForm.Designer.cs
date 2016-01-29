@@ -210,6 +210,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ping-Pong";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.BackgrowndPanel.ResumeLayout(false);
             this.BackgrowndPanel.PerformLayout();
             this.MaincontextMenu.ResumeLayout(false);

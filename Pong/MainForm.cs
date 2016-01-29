@@ -14,6 +14,7 @@ namespace Pong
     {
         public int score;
         public int speed_left, speed_top;
+        bool left, right;
         Random rnd = new Random();
 
         public MainForm()
@@ -42,6 +43,9 @@ namespace Pong
         #region Game logic
         private void MainTimer_Tick(object sender, EventArgs e)
         { 
+            if (left) if (ItemRacket.Left - 15 >= BackgrowndPanel.Left) ItemRacket.Left -= 15;
+            if (right) if (ItemRacket.Right + 15 <= BackgrowndPanel.Right) ItemRacket.Left += 15;
+
             if (ItemBall.Bottom >= ItemRacket.Top && ItemBall.Left >= ItemRacket.Left - 12 && ItemBall.Right <= ItemRacket.Right + 12)
             {
                 if (ItemBall.Left <=(ItemRacket.Left + (ItemRacket.Width / 3)) - 12)    //if ball collision with coners
@@ -81,14 +85,14 @@ namespace Pong
         {
             if (e.KeyCode == Keys.Escape) Close();
             if (e.KeyCode == Keys.Enter) StartGame();
-            if (ItemRacket.Left - 15 >= BackgrowndPanel.Left)
-            {
-                if (e.KeyCode == Keys.Left) ItemRacket.Left -= 15;
-            }
-            if (ItemRacket.Right + 15 <= BackgrowndPanel.Right)
-            {
-                if (e.KeyCode == Keys.Right) ItemRacket.Left += 15;
-            }
+            if (e.KeyCode == Keys.Left) left = true;
+            if (e.KeyCode == Keys.Right) right = true;
+        }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left) left = false;
+            if (e.KeyCode == Keys.Right) right = false;
         }
         #endregion
 
