@@ -15,18 +15,23 @@ namespace Pong
         public int score;
         public int speed_left, speed_top;
         bool left, right;
+        bool pause = false;
+        bool gameover = true;
         Random rnd = new Random();
 
         public MainForm()
         {
             InitializeComponent();
-            StartGame();
         }
 
         #region Constructor
         public void StartGame()
         {
             MainTimer.Enabled = true;
+            gameover = false;
+            lblPause1.Visible = false;
+            lblPause2.Visible = false;
+            lblStartE.Visible = false;
             lblGameOverScore.Visible = false;
             lblGameOver.Visible = false;
             score = 0;
@@ -78,15 +83,36 @@ namespace Pong
             ItemBall.Left += speed_left;
             ItemBall.Top += speed_top;
         }
+
+        public void Pause()
+        {
+            pause = true;
+            MainTimer.Enabled = false;
+            lblPause1.Visible = true;
+            lblPause2.Visible = true;
+        }
+
+        public void Resume()
+        {
+            pause = false;
+            MainTimer.Enabled = true;
+            lblPause1.Visible = false;
+            lblPause2.Visible = false;
+        }
         #endregion
 
         #region Buttons' actions
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape) Close();
-            if (e.KeyCode == Keys.Enter) StartGame();
+            if (e.KeyCode == Keys.Enter && gameover) StartGame();
             if (e.KeyCode == Keys.Left) left = true;
             if (e.KeyCode == Keys.Right) right = true;
+            if (e.KeyCode == Keys.P && !(gameover))
+            {
+                if (pause) Resume();
+                else Pause();
+            }
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
@@ -107,14 +133,19 @@ namespace Pong
             StartGame();
         }
 
-        private void restartToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MaincontextMenu_Opened(object sender, EventArgs e)
         {
-            StartGame();
+            if (!gameover) Pause();
+        }
+
+        private void resumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!gameover) Resume();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new About()).ShowDialog();
+            (new About()).Show();
         }
         #endregion
     }

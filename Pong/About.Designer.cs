@@ -70,10 +70,11 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblAbout);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAbout";
             this.ResumeLayout(false);
             this.PerformLayout();
