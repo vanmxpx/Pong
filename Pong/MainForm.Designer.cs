@@ -32,7 +32,7 @@
             this.BackgrowndPanel = new System.Windows.Forms.Panel();
             this.MaincontextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +45,9 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ScoreStrip = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
+            this.lblPause2 = new System.Windows.Forms.Label();
+            this.lblPause1 = new System.Windows.Forms.Label();
+            this.lblStartE = new System.Windows.Forms.Label();
             this.BackgrowndPanel.SuspendLayout();
             this.MaincontextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ItemBall)).BeginInit();
@@ -56,6 +59,9 @@
             // 
             this.BackgrowndPanel.AllowDrop = true;
             this.BackgrowndPanel.ContextMenuStrip = this.MaincontextMenu;
+            this.BackgrowndPanel.Controls.Add(this.lblStartE);
+            this.BackgrowndPanel.Controls.Add(this.lblPause1);
+            this.BackgrowndPanel.Controls.Add(this.lblPause2);
             this.BackgrowndPanel.Controls.Add(this.lblGameOverScore);
             this.BackgrowndPanel.Controls.Add(this.lblGameOver);
             this.BackgrowndPanel.Controls.Add(this.label1);
@@ -72,43 +78,44 @@
             // 
             this.MaincontextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newGameToolStripMenuItem,
-            this.restartToolStripMenuItem,
+            this.resumeToolStripMenuItem,
             this.toolStripMenuItem2,
             this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.MaincontextMenu.Name = "MaincontextMenu";
-            this.MaincontextMenu.Size = new System.Drawing.Size(133, 98);
+            this.MaincontextMenu.Size = new System.Drawing.Size(147, 98);
+            this.MaincontextMenu.Opened += new System.EventHandler(this.MaincontextMenu_Opened);
             // 
             // newGameToolStripMenuItem
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newGameToolStripMenuItem.Text = "New Game";
             this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
-            // restartToolStripMenuItem
+            // resumeToolStripMenuItem
             // 
-            this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.restartToolStripMenuItem.Text = "Restart";
-            this.restartToolStripMenuItem.Click += new System.EventHandler(this.restartToolStripMenuItem_Click);
+            this.resumeToolStripMenuItem.Name = "resumeToolStripMenuItem";
+            this.resumeToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.resumeToolStripMenuItem.Text = "Resume     (P)";
+            this.resumeToolStripMenuItem.Click += new System.EventHandler(this.resumeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(129, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(143, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -126,6 +133,7 @@
             // lblGameOver
             // 
             this.lblGameOver.AutoSize = true;
+            this.lblGameOver.BackColor = System.Drawing.Color.Transparent;
             this.lblGameOver.Font = new System.Drawing.Font("Orator Std", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGameOver.Location = new System.Drawing.Point(220, 106);
             this.lblGameOver.Name = "lblGameOver";
@@ -196,6 +204,40 @@
             this.MainTimer.Interval = 30;
             this.MainTimer.Tick += new System.EventHandler(this.MainTimer_Tick);
             // 
+            // lblPause2
+            // 
+            this.lblPause2.AutoSize = true;
+            this.lblPause2.BackColor = System.Drawing.Color.Transparent;
+            this.lblPause2.Font = new System.Drawing.Font("Felix Titling", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPause2.Location = new System.Drawing.Point(283, 227);
+            this.lblPause2.Name = "lblPause2";
+            this.lblPause2.Size = new System.Drawing.Size(139, 32);
+            this.lblPause2.TabIndex = 6;
+            this.lblPause2.Text = "*Paused*";
+            this.lblPause2.Visible = false;
+            // 
+            // lblPause1
+            // 
+            this.lblPause1.AutoSize = true;
+            this.lblPause1.BackColor = System.Drawing.Color.Transparent;
+            this.lblPause1.Font = new System.Drawing.Font("Freestyle Script", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPause1.Location = new System.Drawing.Point(256, 151);
+            this.lblPause1.Name = "lblPause1";
+            this.lblPause1.Size = new System.Drawing.Size(217, 76);
+            this.lblPause1.TabIndex = 7;
+            this.lblPause1.Text = "Ping-Pong!";
+            // 
+            // lblStartE
+            // 
+            this.lblStartE.AutoSize = true;
+            this.lblStartE.BackColor = System.Drawing.Color.Transparent;
+            this.lblStartE.Font = new System.Drawing.Font("Orator Std", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lblStartE.Location = new System.Drawing.Point(220, 231);
+            this.lblStartE.Name = "lblStartE";
+            this.lblStartE.Size = new System.Drawing.Size(272, 28);
+            this.lblStartE.TabIndex = 8;
+            this.lblStartE.Text = "Press Enter to Start";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,8 +280,11 @@
         private System.Windows.Forms.Timer MainTimer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblGameOver;
-        private System.Windows.Forms.ToolStripMenuItem restartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resumeToolStripMenuItem;
         private System.Windows.Forms.Label lblGameOverScore;
+        private System.Windows.Forms.Label lblPause1;
+        private System.Windows.Forms.Label lblPause2;
+        private System.Windows.Forms.Label lblStartE;
     }
 }
 
