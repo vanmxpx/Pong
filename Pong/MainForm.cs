@@ -73,6 +73,7 @@ namespace Pong
             if (ItemBall.Bottom >= BackgrowndPanel.Bottom - 26)
             {
                 MainTimer.Enabled = false;
+                gameover = true;
                 lblGameOverScore.Text = Convert.ToString(score);
                 lblGameOverScore.Visible = true;
                 lblGameOver.Visible = true;
